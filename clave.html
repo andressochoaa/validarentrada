@@ -1,0 +1,85 @@
+<html lang="es">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>Validar entrada</title>
+   	 	<meta name="keywords" content="javascript, validar, clave, fuerte"/>
+    	<meta name="description" content="Validar entrada"/>
+        <script language="javascript" type="text/javascript">
+		function validacion()
+		{
+			var claveingresada = document.getElementById('claveingresada').value;
+			if(validar_clave(claveingresada) == true)
+			{
+				alert('La clave ingresada es valida');
+			}
+			else
+			{
+				alert('La clave que fue ingresada no es valida');
+			}
+		}
+
+		function validar_clave(claveingresada)
+		{
+			if(claveingresada.length == 10)
+			{		
+				var mayuscula = false;
+				var minuscula = false;
+				var numero = false;
+				var caracter = false;
+				
+				for(var i = 0;i<10;i++)
+				{
+					if(claveingresada.charCodeAt(0) >= 65 && claveingresada.charCodeAt(0) <= 90)
+					{
+						mayuscula = true;
+					}
+					for(var j = 1; j<4; j++){
+						if(claveingresada.charCodeAt(j) >= 48 && claveingresada.charCodeAt(j) <= 57)
+						{
+							numero = true;
+						}
+					}
+					for(var k = 4; k<7; k++){
+						if(claveingresada.charCodeAt(k) >= 97 && claveingresada.charCodeAt(k) <= 122)
+						{
+							minuscula = true;
+						}
+					}
+					for(var q = 7; q<10; q++){
+						if(claveingresada.charCodeAt(q) >= 33 && claveingresada.charCodeAt(q) <= 47)
+						{
+							caracter = true;
+						}else if(claveingresada.charCodeAt(q) >= 58 && claveingresada.charCodeAt(q) <= 64)
+						{
+							caracter = true;
+						}else if(claveingresada.charCodeAt(q) >= 91 && claveingresada.charCodeAt(q) <= 96)
+						{
+							caracter = true;
+						}else if(claveingresada.charCodeAt(q) >= 123 && claveingresada.charCodeAt(q) <= 126)
+						{
+							caracter = true;
+						}
+					}
+					if(mayuscula == true && numero == true && minuscula == true && caracter == true)
+					{
+					return true;
+					}
+				}
+			}else{
+				return false;
+			}
+		}
+		</script>
+    </head>
+    <body style="background-color: #222831; ">
+    	<fieldset style="width:50%;margin-left:25%; margin-top: 15%; background-color: #30475e;">
+            <legend style="background-color: #c1a57b;">Implementación de expresiones regulares para validar entradas a un programa</legend>
+            <form>
+                <br/>
+                <label for="claveingresada">Ingrese una clave para validar</label>
+                <input type="password" id="claveingresada" value=""/>
+                <input type="button" id="validar" onclick="javascript:validacion();" value="Validar"/>
+            </form>
+        </fieldset>
+    </body>    
+</html>
